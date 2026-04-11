@@ -127,7 +127,7 @@ console.log(`
 ${c.bold}${c.cyan}┌─────────────────────────────────────┐${c.reset}
 ${c.bold}${c.cyan}│         🤖  Agent Skills CLI        │${c.reset}
 ${c.bold}${c.cyan}└─────────────────────────────────────┘${c.reset}
-${skillEntries.length > 0 ? `\n${c.bold}Available skills:${c.reset}\n${skillList}\n` : ""}${c.dim}Type your message to chat. Press Ctrl+C to exit.${c.reset}
+${skillEntries.length > 0 ? `\n${c.bold}Available skills:${c.reset}\n${skillList}\n` : ""}${c.dim}Type your message to chat. Press Ctrl+C or enter quit or exit to exit.${c.reset}
 `);
 
 // ── Interactive CLI loop ──
@@ -142,14 +142,20 @@ while (true) {
   const input = await rl.question(`${c.green}${c.bold}❯ ${c.reset}`);
   if (!input.trim()) continue;
 
+  if (input.toLowerCase() === "quit" || input.toLowerCase() === "exit") {
+    rl.close();
+    break;
+  }
+
   messages.push({ role: "user", content: input });
 
+  console.log();
   const spinner = createSpinner("Thinking...");
   try {
     const result = await agent.generate({ messages });
     spinner.stop();
     const reply = result.text;
-    console.log(`\n${c.magenta}${c.bold}Agent:${c.reset} ${reply}\n`);
+    console.log(`${c.magenta}${c.bold}Agent:${c.reset} ${reply}\n`);
     messages.push({ role: "assistant", content: reply });
   } catch (err: any) {
     spinner.stop();
