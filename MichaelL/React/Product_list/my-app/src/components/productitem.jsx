@@ -24,13 +24,16 @@
 
 function ProductItem({ product, onDelete }) {
     //product是一个object 所以用{}， onDelete是函数 所以用（）
+    const formattedPrice =
+        typeof product.price === 'number'
+            ? product.price.toFixed(2)
+            : product.price;
     return (
         <div className="card mb-2 shadow-sm border-0 bg-light">
             <div className="card-body d-flex justify-content-between align-items-center">
                 <div>
                     <h5 className="card-title mb-0">{product.name}</h5>
-                    <small className="text-success fw-bold">${product.price}</small>
-                    {/* 显示商品de价格，tofix(2) 确保两位小数 */}
+                    <small className="text-success fw-bold">${formattedPrice}</small>
                 </div>
                 <button
                     className="btn btn-outline-danger btn-sm rounded-pill"
