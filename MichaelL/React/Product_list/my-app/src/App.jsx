@@ -11,8 +11,8 @@ function App() {
     { id: 3, name: 'AirPods Pro 50', price: 249.50 }
   ]);
 
-  const [productname, setproductname] = useState(" ")
-  const [productprice, setproductprice] = useState(0)
+  const [productname, setproductname] = useState("")
+  const [productprice, setproductprice] = useState("")
 
 
   const [filterText, setFilterText] = useState("");
@@ -31,15 +31,16 @@ function App() {
 
 
   const handleAdd = (name, price) => {
+    // const formattedPrice = parseFloat(price);
     if (!name || !price) return; // 简单校验，防止添加空商品
     const newProduct = {
       id: Date.now(),
       name: name,
-      price: parseFloat(price) // 确保价格是数字
+      price: parseFloat(productprice) // 确保价格是数字
     };
-    setProducts([...products, newProduct]);
+    setProducts(prev => [...prev, newProduct]);
 
-    // 💡 自动清空输入框
+    //  自动清空输入框
     setproductname("");
     setproductprice("");
   };
