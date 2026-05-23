@@ -8,8 +8,13 @@ def pascal_triangle(num) :
         # print(row)
     # print(triangle)
     for i in range(num):
-        strnum = " ".join(map(str, triangle[i]))
-        spacect = " "* (num - 1 -i)
+        strnum = ""
+        for y in range(i+1):
+            strnum += str(triangle[i][y])
+            strnum += " "
+        spacect = ""
+        for x in range(num - i - 1):
+            spacect += " "
         print(spacect + strnum)
         
 
