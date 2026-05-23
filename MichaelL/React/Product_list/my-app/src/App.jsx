@@ -39,7 +39,7 @@ function App() {
     };
     setProducts([...products, newProduct]);
 
-    // 💡 自动清空输入框
+    //  自动清空输入框
     setproductname("");
     setproductprice("");
   };
