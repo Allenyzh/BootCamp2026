@@ -7,14 +7,14 @@ function ProductList({ products, onDelete }) {
 
     //“我知道传进来的是一个对象，请帮我直接把里面的 products 和 onDelete 这两个零件拿出来给我用。”
     return (
-        <ul className="btn btn-danger">
-            {products.map((item) => (
-                //每一个打上标签
-                <ProductItem
-                    key={item.id}
-                    product={item}
-                    onDelete={onDelete}
-                />
+        <ul>
+            {products.map(item => (
+                <li key={item.id}>
+                    <ProductItem
+                        product={item}
+                        onDelete={onDelete}
+                    />
+                </li>
             ))}
         </ul>
     )
