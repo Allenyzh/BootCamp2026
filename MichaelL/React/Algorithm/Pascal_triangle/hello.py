@@ -28,4 +28,4 @@ def triangle(num_line):
 
 
 
-triangle(num_line)
+triangle(num_line) 
