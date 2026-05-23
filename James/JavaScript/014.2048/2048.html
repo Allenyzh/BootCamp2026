@@ -6,9 +6,19 @@
     <title>2048</title>
     <style>
         body {
+            margin: 0;
+            /* 去除浏览器默认外边距 */
+            height: 100vh;
+            /* 让 body 高度等于视口高度（100% 窗口高度） */
+            display: flex;
+            flex-direction: column;
             font-family: monospace;
             padding: 20px;
             line-height: 1.5;
+            justify-content: center;
+            align-content: center;
+
+
         }
 
         .matrix-display {
@@ -45,7 +55,6 @@
             width: 100%;
             aspect-ratio: 1 / 1;
             /* 确保格子始终是正方形 */
-
             /* 核心居中技术：Flexbox */
             display: flex;
             justify-content: center;
@@ -60,7 +69,6 @@
             /* 极粗字体，更有质感 */
             font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
             /* 2048 常用字体 */
-
             border-radius: 5px;
             /* 轻微圆角 */
             transition: all 0.1s;
@@ -78,7 +86,7 @@
 
 
 
-    <div id="output" class="matrix-display"></div>
+    <div id="output" class="matrix-display">2048</div>
 
     <!-- 我要一个现实界面,能看到一个4*4的格子,并且显示对应data里的数字 -->
     <div id="grid-container"></div>
@@ -183,6 +191,7 @@
         // console.log(filter(r, 3))
 
         function merges(list) {
+            postionMap = []
             for (let a = 0; a < list.length - 1; a++) {
                 if (list[a] === list[a + 1]) {
                     list[a] = list[a] * 2
