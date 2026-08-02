@@ -16,7 +16,10 @@
             padding: 20px;
             line-height: 1.5;
             justify-content: center;
-            align-content: center;
+            align-items: center;
+            /* 水平和垂直居中内容 */
+            background-color: #faf8ef;
+            /* 2048 常用背景色 */
 
 
         }
@@ -317,21 +320,39 @@
             });
         }
 
+        function initgame() {
+            data = [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
+            ]
+            for (let i = 0; i < 2; i++) {
+                addRrandomNumber();
+            }
+        }
+
         const gridBox = document.getElementById('grid-container')
 
         renderGrid(data, gridBox)
+        initgame()
+
+
+        //prsss N to restart
+        addEventListener('keydown', function (event) {
+            if (event.key === 'n' || event.key === 'N') {
+                initgame()
+                renderGrid(data, gridBox)
+            }
+        });
 
 
 
 
         btn.addEventListener('click', function () {
-            for (let i = 0; i < 2; i++) {
-                addRrandomNumber();
-            }
-            renderGrid(data, gridBox)
+            initgame()
 
-            console.table(data);
-            // output.textContent = data.map(row => row.join(' ')).join('\n');
+            renderGrid(data, gridBox)
         });
 
         // btnl.addEventListener('click', function () {
